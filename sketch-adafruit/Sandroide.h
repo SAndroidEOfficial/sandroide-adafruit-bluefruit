@@ -27,8 +27,23 @@
 #include "Adafruit_BLE.h"
 #include "Adafruit_BluefruitLE_SPI.h"
 #include "Adafruit_BluefruitLE_UART.h"
-#include "BluefruitConfig.h"
 
+/********************************************
+// extracted from BluefruitConfig.h
+*********************************************/
+#define BUFSIZE                        128   // Size of the read buffer for incoming data
+#define VERBOSE_MODE                   true  // If set to 'true' enables debug output
+
+// SHARED SPI SETTINGS
+// ----------------------------------------------------------------------------------------------
+// The following macros declare the pins to use for HW and SW SPI communication.
+// SCK, MISO and MOSI should be connected to the HW SPI pins on the Uno when
+// using HW SPI.  This should be used with nRF51822 based Bluefruit LE modules
+// that use SPI (Bluefruit LE SPI Friend).
+// ----------------------------------------------------------------------------------------------
+#define BLUEFRUIT_SPI_CS               8
+#define BLUEFRUIT_SPI_IRQ              7
+#define BLUEFRUIT_SPI_RST              4    // Optional but recommended, set to -1 if unused
 
 // Create the bluefruit object
 #define FACTORYRESET_ENABLE         1
@@ -110,6 +125,17 @@ void sendMessage(uint8_t *buf, int len) {
     }*/
   }
 }
+
+
+// function to send Custom message from Adafruit device to Smartphone
+void sendCustomMessage(char *buf, int len) {
+  if (ble.isConnected()) {
+      if (sandroideDebug) { Serial.print("SENDING "); Serial.println(buf);}
+      ble.print("AT+BLEUARTTX=");
+      ble.println(buf);
+  }
+}
+
 
 // Reads a pin value,  given its pin number
 uint16_t readPin(uint8_t pin) {

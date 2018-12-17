@@ -90,6 +90,33 @@
                 android:layout_weight="1" />
 
         </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="CUSTOM:"
+                android:layout_weight="1"
+                android:textSize="36sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/tvCustomMessage"
+                android:textSize="36sp"
+                android:textIsSelectable="true"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 
